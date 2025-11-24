@@ -7,14 +7,14 @@
           "host": "Die IP-Adresse Ihres SolarMax-Wechselrichter-Modbus-Geräts",
           "name": "Das Präfix, das für Ihre SolarMax-Wechselrichter-Sensoren verwendet werden soll",
           "port": "Der TCP-Port, über den eine Verbindung zum SolarMax-Wechselrichter hergestellt werden soll",
-          "scan_interval": "Die Abfragehäufigkeit der Modbus-Register in Sekunden. Mindestens 60, 0->kein Scan",
+          "scan_interval": "Die Abfragehäufigkeit der Modbus-Register in Sekunden. Mindestens 20",
           "ping_host": "IP des SolarMax zur Power On Erkennung"
         }
       }
     },
     "error": {
       "already_configured": "Gerät ist bereits konfiguriert",
-      "invalid_scan_interval": "Scan-Intervall muss mindestens 60 Sekunden oder 0 betragen"
+      "invalid_scan_interval": "Scan-Intervall muss mindestens 20 Sekunden betragen"
     },
     "abort": {
       "already_configured": "Gerät ist bereits konfiguriert"
