@@ -59,15 +59,21 @@ energy_sensor = [
     {"name": "Total Hours", "type": "UINT32", "factor":  1,
      "unit": UnitOfTime.HOURS, "device_class": SensorDeviceClass.DURATION,
      "state_class": SensorStateClass.TOTAL_INCREASING, "icon": "mdi:timeline-clock-outline"},
+    {"name": "Today Energy", "type": "UINT32", "factor":  1,
+     "unit": UnitOfEnergy.KILO_WATT_HOUR, "device_class": SensorDeviceClass.ENERGY,
+     "state_class": SensorStateClass.TOTAL, "icon": "mdi:solar-power"},
+    {"name": "Today Energy2", "type": "UINT32", "factor":  0.001,
+     "unit": UnitOfEnergy.KILO_WATT_HOUR, "device_class": SensorDeviceClass.ENERGY,
+     "state_class": SensorStateClass.TOTAL, "icon": "mdi:solar-power"},
 ]
 
 power_sensors = [
     {"name": "Active Power", "type": "UINT32", "factor":  0.001,
      "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.POWER,
-     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},
+     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash"},
     {"name": "Reactive Power", "type": "UINT32", "factor":  0.001,
      "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.REACTIVE_POWER,
-     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},
+     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash-outline"},
     {"name": "Today max Power", "type": "UINT32", "factor":  0.1,
      "unit": UnitOfPower.WATT, "device_class": SensorDeviceClass.POWER,
      "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},

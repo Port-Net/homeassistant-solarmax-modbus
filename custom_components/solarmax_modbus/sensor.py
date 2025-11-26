@@ -4,13 +4,13 @@ from dataclasses import dataclass
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from .const import DOMAIN, line_sensor, pv_sensor, energy_sensor
+from .const import DOMAIN, line_sensor, pv_sensor, energy_sensor, power_sensors
 from .hub import SolarMaxModbusHub
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.components.sensor import SensorEntity, SensorStateClass
 import logging
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntityDescription
-from homeassistant.const import UnitOfTemperature
+from homeassistant.const import UnitOfPower, UnitOfTemperature
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -35,9 +35,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
         # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
         #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
         #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
-            sensor_key = f"L{str(i + 1)}{sens['name']}"
+            sensor_key = sens["name"] + "L" + str(i + 1)
             sensor = SolarMaxSensorEntityDescription(
-                name=f"L{str(i + 1)} {sens['name']}",
+                name=sens["name"] + " L" + str(i + 1),
                 key=sensor_key,
                 native_unit_of_measurement=sens["unit"],
                 icon=sens["icon"],
@@ -60,9 +60,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
         # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
         #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
         #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
-            sensor_key = f"PV{str(i + 1)}{sens['name']}"
+            sensor_key = sens["name"] + "PV" + str(i + 1)
             sensor = SolarMaxSensorEntityDescription(
-                name= f"PV{str(i + 1)} {sens['name']}",
+                name=sens["name"] + " PV" + str(i + 1),
                 key=sensor_key,
                 native_unit_of_measurement=sens["unit"],
                 icon=sens["icon"],
@@ -114,7 +114,34 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
     # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
     #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
     #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
-        sensor_key = sens["name"]
+        sensor_key = sens["name"].replace(" ", "_")
+        sensor = SolarMaxSensorEntityDescription(
+            name=sens["name"],
+            key=sensor_key,
+            native_unit_of_measurement=sens["unit"],
+            icon=sens["icon"],
+            device_class=sens["device_class"],
+            state_class=sens["state_class"],
+            entity_registry_enabled_default=True,
+            factor=sens["factor"],
+            data_type=sens["type"]
+        )
+        entity = SolarMaxSensor(hub, device_info, sensor)
+        entities.append(entity)
+        key_dict[offset] = {"key": sensor_key, "type": sens["type"], "factor": sens["factor"]}
+        offset += 1
+        if str(sens["type"]).endswith("32"):
+            offset += 1
+        elif str(sens["type"]).endswith("64"):
+            offset += 3
+
+    offset += 14 # skip 14 regs
+
+    for sens in power_sensors:
+    # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
+    #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
+    #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
+        sensor_key = sens["name"].replace(" ", "_")
         sensor = SolarMaxSensorEntityDescription(
             name=sens["name"],
             key=sensor_key,
