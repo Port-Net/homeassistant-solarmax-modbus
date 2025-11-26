@@ -5,6 +5,7 @@ from homeassistant.const import (
     UnitOfElectricCurrent,
     UnitOfElectricPotential,
     UnitOfPower,
+    UnitOfReactivePower,
     UnitOfEnergy,
     UnitOfFrequency,
     UnitOfTime
@@ -72,7 +73,7 @@ power_sensors = [
      "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.POWER,
      "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash"},
     {"name": "Reactive Power", "type": "UINT32", "factor":  0.001,
-     "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.REACTIVE_POWER,
+     "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE, "device_class": SensorDeviceClass.REACTIVE_POWER,
      "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash-outline"},
     {"name": "Today max Power", "type": "UINT32", "factor":  0.1,
      "unit": UnitOfPower.WATT, "device_class": SensorDeviceClass.POWER,
