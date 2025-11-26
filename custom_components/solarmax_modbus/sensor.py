@@ -35,9 +35,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
         # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
         #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
         #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
-            sensor_key = sens["name"] + "L" + str(i + 1)
+            sensor_key = f"L{i+1}{sens["name"]}"
             sensor = SolarMaxSensorEntityDescription(
-                name=sens["name"] + " L" + str(i + 1),
+                name=f"L{i+1} {sens["name"]}",
                 key=sensor_key,
                 native_unit_of_measurement=sens["unit"],
                 icon=sens["icon"],
@@ -60,9 +60,9 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
         # {"name": "Voltage",   "type": "uint16", "factor":  0.1,
         #  "unit": UnitOfElectricPotential.VOLT, "device_class": SensorDeviceClass.VOLTAGE,
         #  "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:sine-wave"},
-            sensor_key = sens["name"] + "PV" + str(i + 1)
+            sensor_key = f"PV{i+1}{sens["name"]}"
             sensor = SolarMaxSensorEntityDescription(
-                name=sens["name"] + " PV" + str(i + 1),
+                name=f"PV{i+1} {sens["name"]}",
                 key=sensor_key,
                 native_unit_of_measurement=sens["unit"],
                 icon=sens["icon"],
