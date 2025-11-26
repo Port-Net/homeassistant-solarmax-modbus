@@ -61,6 +61,18 @@ energy_sensor = [
      "state_class": SensorStateClass.TOTAL_INCREASING, "icon": "mdi:timeline-clock-outline"},
 ]
 
+power_sensors = [
+    {"name": "Active Power", "type": "UINT32", "factor":  0.001,
+     "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.POWER,
+     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},
+    {"name": "Reactive Power", "type": "UINT32", "factor":  0.001,
+     "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.REACTIVE_POWER,
+     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},
+    {"name": "Today max Power", "type": "UINT32", "factor":  0.1,
+     "unit": UnitOfPower.WATT, "device_class": SensorDeviceClass.POWER,
+     "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:solar-power"},
+]
+
 STATUS_INVERTER_MODE = {
   0: "Initial Mode",
   1: "Standby",

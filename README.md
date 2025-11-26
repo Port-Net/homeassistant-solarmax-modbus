@@ -5,7 +5,7 @@
 
 Integration for reading data from Solarmax Inverters through Modbus TCP.
 
-It should work for Ampere Inverter sold by EKD-Solar if it is labled 4600SP on the small sticker.
+It should work for Ampere Inverter sold by EKD-Solar if it is labled 4600SP on the small sticker. Also reported to work on Solarmax 6SMT
 
 ## Features
 

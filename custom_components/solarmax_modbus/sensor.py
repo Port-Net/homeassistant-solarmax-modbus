@@ -10,7 +10,7 @@ from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.components.sensor import SensorEntity, SensorStateClass
 import logging
 from homeassistant.components.sensor import SensorDeviceClass, SensorEntityDescription
-from homeassistant.const import UnitOfPower
+from homeassistant.const import UnitOfTemperature
 
 
 _LOGGER = logging.getLogger(__name__)
@@ -81,7 +81,19 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry, async_add_e
             elif str(sens["type"]).endswith("64"):
                 offset += 3
 
-    offset += 1 # skip one byte
+    sensor_key = "Temperature"
+    sensor = SolarMaxSensorEntityDescription(
+        name="Temperature",
+        key=sensor_key,
+        icon="mdi:thermometer",
+        native_unit_of_measurement=UnitOfTemperature.CELSIUS,
+        entity_registry_enabled_default=True,
+        data_type="UINT16"
+    )
+    entity = SolarMaxSensor(hub, device_info, sensor)
+    entities.append(entity)
+    key_dict[offset] = {"key": sensor_key, "type": "UINT16", "factor": 1}
+    offset += 1
 
     sensor_key = "InverterMode"
     sensor = SolarMaxSensorEntityDescription(
