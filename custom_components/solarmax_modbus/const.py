@@ -69,11 +69,11 @@ energy_sensor = [
 ]
 
 power_sensors = [
-    {"name": "Active Power", "type": "UINT32", "factor":  0.001,
-     "unit": UnitOfPower.KILO_WATT, "device_class": SensorDeviceClass.POWER,
+    {"name": "Active Power", "type": "UINT32", "factor":  0.1,
+     "unit": UnitOfPower.WATT, "device_class": SensorDeviceClass.POWER,
      "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash"},
-    {"name": "Reactive Power", "type": "UINT32", "factor":  0.001,
-     "unit": UnitOfReactivePower.KILO_VOLT_AMPERE_REACTIVE, "device_class": SensorDeviceClass.REACTIVE_POWER,
+    {"name": "Reactive Power", "type": "UINT32", "factor":  0.1,
+     "unit": UnitOfReactivePower.VOLT_AMPERE_REACTIVE, "device_class": SensorDeviceClass.REACTIVE_POWER,
      "state_class": SensorStateClass.MEASUREMENT, "icon": "mdi:flash-outline"},
     {"name": "Today max Power", "type": "UINT32", "factor":  0.1,
      "unit": UnitOfPower.WATT, "device_class": SensorDeviceClass.POWER,

@@ -1,7 +1,7 @@
 [![hacs_badge](https://img.shields.io/badge/HACS-default-orange.svg)](https://github.com/hacs/default)[![GitHub release](https://img.shields.io/github/v/release/Chris42/homeassistant-solarmax-modbus)](https://github.com/Chris42/homeassistant-solarmax-modbus/releases)[![GitHub All Releases](https://img.shields.io/github/downloads/Chris42/homeassistant-solarmax-modbus/total)](https://github.com/Chris42/homeassistant-solarmax-modbus/releases)  
 
 
-# Solarmax Inverter Modbus - A Home Assistant integration for Solarmax SP Inverters
+# Solarmax Inverter Modbus - A Home Assistant integration for Solarmax SP/SMT Inverters
 
 Integration for reading data from Solarmax Inverters through Modbus TCP.
 
